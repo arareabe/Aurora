@@ -1,0 +1,24 @@
+.navBarWrapper {
+  display: flex;
+  align-items: center;
+  padding-top: 0.4rem;
+  background-color: black;
+  margin-left: 18%;
+  margin-right: 18%;
+  justify-content: space-around;
+
+}
+
+.navBarIcons {
+  display: flex;
+  gap: 2rem;
+}
+
+.navBarSearchWrapper {
+ display: flex;
+
+}
+
+#navBarSearch {
+  height: 2rem;
+}

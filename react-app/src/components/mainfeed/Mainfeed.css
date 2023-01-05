@@ -1,0 +1,9 @@
+.mainfeedWrapper {
+  margin-left: 2rem;
+  background-color: lightgreen;
+  width: 40rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}

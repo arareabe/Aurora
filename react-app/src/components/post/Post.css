@@ -1,0 +1,8 @@
+.postWrapper {
+  border: 2px solid red;
+}
+
+.postHeader {
+  display: flex;
+}
+
