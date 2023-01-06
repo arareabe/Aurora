@@ -12,19 +12,22 @@ function CreateQuestion({ setShowPostQueModal }) {
   const [imageUrl, setImageUrl] = useState('')
   const [validationErrors, setValidationErrors] = useState([])
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  //   // const res = await dispatch(createAQuestion({question, imageUrl}))
+    // question.imageUrl = imageUrl
 
-  //   if (res.errors) {
-  //     setValidationErrors(res.errors)
-  //   } else {
-  //     history.push('/')
-  //     setShowPostQueModal(false)
-  //   }
+    const res = await dispatch(createAQuestion(question))
 
-  // }
+    if (res?.errors) {
+      setValidationErrors(res.errors)
+      return
+    } else {
+      history.push('/')
+      setShowPostQueModal(false)
+    }
+
+  }
 
   return (
     <div className='createQueModalWrapper'>
@@ -40,13 +43,22 @@ function CreateQuestion({ setShowPostQueModal }) {
           onChange={(e) => setQuestion(e.target.value)}
         />
       </div>
+      <div>
+        <input
+          type='text'
+          id='imgUrlField'
+          placeholder='(Optional) Drop an image URL to go with your question!'
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+        />
+      </div>
       <div className='validErrs'>
         {validationErrors.map((error, idx) => (
           <div key={idx}>{error}</div>
         ))}
       </div>
       <div>
-        <button id='createQueButton' onClick={{}}>Add Question</button>
+        <button id='createQueButton' onClick={handleSubmit}>Add Question</button>
         <button id='cancelQueButton' onClick={() => setShowPostQueModal(false)}>Cancel</button>
       </div>
     </div>

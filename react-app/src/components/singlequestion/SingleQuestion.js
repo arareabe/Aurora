@@ -5,11 +5,18 @@ import userImg from '../../images/userImg.png'
 import { getSingularQuestion } from '../../store/questions';
 import AllAnswers from '../answers/AllAnswers';
 import './SingleQuestion.css'
+import pen from '../../images/pen.PNG'
+import { Modal } from '../../context/Modal';
+import CreateAnswerForm from '../createanswer/CreateAnswer';
 
 function SingleQuestion() {
   const { questId } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const currUser = useSelector(state => state.session.user)
+
+  const [showAnswerModal, setShowAnswerModal] = useState(false)
 
   useEffect(() => {
     dispatch(getSingularQuestion(questId));
@@ -17,8 +24,14 @@ function SingleQuestion() {
 
   const theQuestion = useSelector((state)=> state.questions.singleQuestion.question)
 
+  const showAnswer = e => {
+    e.preventDefault()
+    setShowAnswerModal(true)
+  }
+
   useEffect(() => {
     console.log('QUESTION----->', theQuestion)
+    console.log("CURR USER --------------", currUser)
   }, [dispatch])
 
   if (!theQuestion) return 'None found'
@@ -38,7 +51,18 @@ function SingleQuestion() {
           <div>{theQuestion.question}</div>
         </div>
 
+        <button className='singQueAddAnswer' onClick={showAnswer}>
+          <img src={pen} />
+          <span>Answer</span>
+        </button>
+
         <img src={theQuestion.imageUrl} />
+
+        {showAnswerModal &&
+          <Modal onClose={() => setShowAnswerModal(false)}>
+            <CreateAnswerForm setShowAnswerModal={setShowAnswerModal} questId={questId} />
+          </Modal>
+        }
       </div>
 
       <div className='AllAnswersWrapper'>

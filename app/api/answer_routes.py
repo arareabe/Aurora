@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, Answer
+from app.models import db, Answer, Question
 from app.forms.answer_form import AnswerForm
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -11,7 +11,8 @@ answer_routes = Blueprint('answers', __name__)
 @answer_routes.route('/<int:questionId>/answers')
 @login_required
 def readAnswers(questionId):
-    answers = Question.query.all()
+    question = Question.query.get(questionId)
+    answers = question[answers]
     return { 'answers': [answer.to_dict() for answer in answers]}
 
 # Create Single Answer

@@ -8,13 +8,15 @@ function Post({ question }) {
 
   console.log('THIS IS THE QUESTION --------------> ', question)
 
+  if (!question) return 'No question here'
+
   return (
     <div className='postContainer'>
       <div className='postHeader'>
         <img src={userImg} id='postUserImg'></img>
         <div className='postHeadUser'>
-          <span id='postHeadName'>{question.user.firstName} {' '} {question.user.lastName}</span>
-          <span id='postHeadDesc'>{question.user.description}</span>
+          <span id='postHeadName'>{question.user?.firstName} {' '} {question.user?.lastName}</span>
+          <span id='postHeadDesc'>{question.user?.description}</span>
         </div>
       </div>
 
