@@ -18,6 +18,7 @@ def answer_long(form, field):
 class AnswerForm(FlaskForm):
     userId = IntegerField('userId', validators=[DataRequired('Log in before you post an answer')])
     questionId = IntegerField('questionId', validators=[DataRequired('Must select a question to answer')])
+    answer_id = IntegerField('answer_id')
     answer = StringField('answer', validators=[
         DataRequired(),
         answer_short,

@@ -83,14 +83,14 @@ export const createAQuestion = (newQuestion) => async (dispatch) => {
   }
 }
 
-export const updatedAQuestion = (questId, editedInfo) => async (dispatch) => {
+export const updatedAQuestion = (editedInfo, questId) => async (dispatch) => {
+  console.log("EDITED QUESTION ===============", editedInfo)
   const res = await fetch('/api/questions/', {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      questId,
+    body: JSON.stringify(
       editedInfo
-    })
+    )
   })
 
   if (res.ok) {
@@ -101,6 +101,7 @@ export const updatedAQuestion = (questId, editedInfo) => async (dispatch) => {
 }
 
 export const removeAQuestion = (questId) => async (dispatch) => {
+  console.log("QUESTION ID -----------------", questId)
   const res = await fetch('/api/questions/', {
     method: "DELETE",
     headers: { 'Content-Type': 'application/json' },
@@ -141,6 +142,7 @@ const questionsReducer = (state = initialState, action) => {
     case UPDATE_QUESTION: {
       const updatedQueState = { ...state, allQuestions: { ...state.allQuestions }, singleQuestion: { ...state.singleQuestion } }
       updatedQueState.singleQuestion = action.payload;
+      updatedQueState.allQuestions[action.payload.id] = action.payload
       return updatedQueState;
     }
     case REMOVE_QUESTION: {

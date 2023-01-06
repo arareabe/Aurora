@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { updateAnAnswer } from '../../store/answers';
 import './EditAnswer.css'
 
-const EditAnswerForm = ({ setShowEditAnsModal, questId }) => {
+const EditAnswerForm = ({ setShowEditAnsModal, answerId, questId }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -18,7 +18,7 @@ const EditAnswerForm = ({ setShowEditAnsModal, questId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await dispatch(updateAnAnswer(questionId, answer))
+    const res = await dispatch(updateAnAnswer( questionId, currUser.id, answerId, answer))
 
     if (res?.errors) {
       setValidationErrors(res.errors)

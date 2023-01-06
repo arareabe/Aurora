@@ -23,3 +23,4 @@ class QuestionForm(FlaskForm):
     question_long
   ])
   imageUrl = StringField('imageUrl')
+  question_id = IntegerField('question_id')

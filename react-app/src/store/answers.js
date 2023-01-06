@@ -30,10 +30,10 @@ const loadAnswer = (answer) => {
   };
 };
 
-const createAnswer = (questId, newAnswer) => {
+const createAnswer = (newAnswer) => {
   return {
     type: CREATE_ANSWER,
-    payload: { questId, newAnswer }
+    payload: { newAnswer }
   };
 };
 
@@ -65,12 +65,15 @@ export const readAnswers = (questId) => async dispatch => {
   }
 }
 
-export const createAnAnswer = ( questId, answer) => async (dispatch) => {
+export const createAnAnswer = ( questionId, userId, answer ) => async (dispatch) => {
+  console.log("CREATED ANSWER ============> ", answer)
   const res = await fetch('/api/answers/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      questId, answer
+      answer,
+      userId,
+      questionId
     })
   })
 
@@ -81,34 +84,34 @@ export const createAnAnswer = ( questId, answer) => async (dispatch) => {
   }
 }
 
-export const updateAnAnswer = ( questId, answerId, answer) => async (dispatch) => {
+export const updateAnAnswer = ( questionId, userId, answer_id, answer) => async (dispatch) => {
   const res = await fetch('/api/answers/', {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      questId, answerId, answer
+      questionId, userId, answer_id, answer
     })
   })
 
   if (res.ok) {
     const updatedAnswer = await res.json();
-    dispatch(updateAnswer(questId, updatedAnswer.answer.id, updatedAnswer.answer.answer));
+    dispatch(updateAnswer(questionId, updatedAnswer.answer.id, updatedAnswer.answer.answer));
     return updatedAnswer
   }
 }
 
-export const removeAnAnswer = (questId, answerId) => async dispatch => {
+export const removeAnAnswer = (answer_id, questId ) => async dispatch => {
   const res = await fetch('/api/answers/', {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      answerId
+      answer_id
     })
   })
 
   if (res.ok) {
     const deletedAnswer = await res.json();
-    dispatch(removeAnswer(answerId, questId))
+    dispatch(removeAnswer(answer_id, questId))
     return deletedAnswer
   }
 }

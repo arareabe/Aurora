@@ -14,10 +14,10 @@ function Mainfeed() {
 
   useEffect(() => {
     dispatch(getAllQuestions())
-  }, [dispatch])
+  }, [dispatch, allQuestions.length])
 
   useEffect(() => {
-    console.log('AWWWWWWWWWWWWWW ', allQuestions);
+    console.log('AWWWWWWWWWWWWWW ', allQuestions.length);
   })
 
   if (!allQuestions) return null;

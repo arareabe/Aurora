@@ -24,10 +24,11 @@ def createSingleAnswer():
 
     user_id = current_user.get_id()
 
+
     if form.validate_on_submit():
         newAnswer = Answer(
-            user_id = form.data['userId'],
-            question_id = form.data['question_id'],
+            userId = form.data['userId'],
+            questionId = form.data['questionId'],
             answer = form.data['answer']
         )
 
@@ -46,6 +47,8 @@ def createSingleAnswer():
 def update_answer():
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
+    print("FORM DATA ----------------", form.data)
 
     if form.validate_on_submit():
 

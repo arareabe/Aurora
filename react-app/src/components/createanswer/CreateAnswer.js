@@ -8,7 +8,7 @@ const CreateAnswerForm = ({ setShowAnswerModal, questId }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const questionId= questId
+  const questionId = questId
 
   const [answer, setAnswer] = useState('')
   const [validationErrors, setValidationErrors] = useState([])
@@ -18,7 +18,15 @@ const CreateAnswerForm = ({ setShowAnswerModal, questId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await dispatch(createAnAnswer(questionId, answer))
+    // const createdAnswer = {
+    //   userId: currUser.id,
+    //   questionId: questId,
+    //   answer: answer
+    // }
+
+    const res = await dispatch(createAnAnswer( questId, currUser.id, answer))
+
+    console.log('RES -------------------', res)
 
     if (res?.errors) {
       setValidationErrors(res.errors)

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import userImg from '../../images/userImg.png'
-import { getSingularQuestion } from '../../store/questions';
+import { getSingularQuestion, removeAQuestion } from '../../store/questions';
 import AllAnswers from '../answers/AllAnswers';
 import './SingleQuestion.css'
 import pen from '../../images/pen.PNG'
@@ -35,6 +35,14 @@ function SingleQuestion() {
     setShowEditQueModal(true)
   }
 
+  const removeQuestion = async (e) => {
+    e.preventDefault();
+
+    const removedQuestion = dispatch(removeAQuestion(questId))
+
+    if (removedQuestion) history.push(`/`)
+  }
+
   useEffect(() => {
     console.log('QUESTION----->', theQuestion)
     console.log("CURR USER --------------", currUser)
@@ -65,6 +73,10 @@ function SingleQuestion() {
 
           <button className='singQueEditQues' onClick={showEditQue}>
             <span>Edit</span>
+          </button>
+
+          <button className='singQueDeleteQue' onClick={removeQuestion}>
+            <span>Delete</span>
           </button>
 
         </div>
