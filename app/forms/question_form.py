@@ -22,4 +22,4 @@ class QuestionForm(FlaskForm):
     question_short,
     question_long
   ])
-  
+  imageUrl = StringField('imageUrl')

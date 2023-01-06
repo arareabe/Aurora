@@ -69,12 +69,11 @@ export const getSingularQuestion = (questId) => async (dispatch) => {
 }
 
 export const createAQuestion = (newQuestion) => async (dispatch) => {
+  console.log("NEW QUESTION ------------------>", newQuestion)
   const res = await fetch('/api/questions/', {
     method: "POST",
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      newQuestion
-    })
+    body: JSON.stringify(newQuestion)
   })
 
   if (res.ok) {

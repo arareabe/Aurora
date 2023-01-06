@@ -5,6 +5,15 @@ const CREATE_ANSWER = 'questions/createAnswer'
 const UPDATE_ANSWER = 'questions/updateAnswer'
 const REMOVE_ANSWER = 'questions/removeAnswer'
 
+const normalize = (data) => {
+  if (!data || !Array.isArray(data)) {
+    return {};
+  }
+  const obj = {};
+  data.forEach((each) => (obj[each.id] = each));
+  return obj;
+};
+
 // ACTION CREATORS
 
 const loadAnswers = (allAnswers) => {
@@ -45,10 +54,12 @@ const removeAnswer = (questId, answerId) => {
 // MY THUNKS
 
 export const readAnswers = (questId) => async dispatch => {
+  console.log('questID ==============>', questId)
   const res = await fetch(`/api/answers/${questId}/answers`)
 
   if (res.ok) {
     const allAnswers = await res.json();
+    console.log("ANSWER ------------------>", allAnswers)
     dispatch(loadAnswers(allAnswers));
     return allAnswers
   }
@@ -105,19 +116,31 @@ export const removeAnAnswer = (questId, answerId) => async dispatch => {
 
 // REDUCE ME
 
-const initialState = {
-
-}
+const initialState = {}
 
 const answersReducer = (state = initialState, action) => {
   switch (action.type) {
     case READ_ANSWERS: {
-      const answersState = { ...state, }
+      const answersState = {}
+      action.payload.answers.forEach((answer) => {
+        answersState[answer.id] = answer
+      })
+      return answersState
     }
     case CREATE_ANSWER: {
-      const createAnsState =  { ...state, allQuestions: { ...state.allQuestions }, singleQuestion: { ...state.singleQuestion } }
-      createAnsState.allQuestions[action.payload.questId].answers.push(action.payload.answer)
+      const createAnsState =  { ...state }
+      createAnsState[action.payload.newAnswer.id] = action.payload.newAnswer
       return createAnsState
+    }
+    case UPDATE_ANSWER: {
+      const updatedAnsState = { ...state }
+      updatedAnsState[action.payload.answerId] = action.payload.updatedAnswer
+      return updatedAnsState
+    }
+    case REMOVE_ANSWER: {
+      const deletedAnsState = { ...state }
+      delete deletedAnsState[action.payload.answerId]
+      return deletedAnsState
     }
     default:
       return state

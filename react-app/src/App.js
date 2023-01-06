@@ -42,9 +42,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
-        <Route path='/' exact={true} >
+        <ProtectedRoute path='/' exact={true} >
           <Home />
-        </Route>
+        </ProtectedRoute>
         <Route path='/question/:questId' >
           <SingleQuestion />
         </Route>

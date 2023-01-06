@@ -36,7 +36,7 @@ def deleteQuestion():
 # Create Single Question
 
 @question_routes.route('/', methods=['POST'])
-# @login_required
+@login_required
 def createSingleQuestion():
   form = QuestionForm()
   form['csrf_token'].data = request.cookies['csrf_token']
@@ -44,10 +44,11 @@ def createSingleQuestion():
   owner_id = current_user.get_id()
 
   if form.validate_on_submit():
+    print('FORM DATA ------------------->', form.data)
     newQuestion = Question(
-      userId= owner_id,
-      question = form['question'],
-      imageUrl = form['imageUrl']
+      userId = form.data['userId'],
+      question = form.data['question'],
+      imageUrl = form.data['imageUrl']
     )
 
     db.session.add(newQuestion)

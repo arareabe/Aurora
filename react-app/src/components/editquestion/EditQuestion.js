@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import './CreateQuestion.css'
-import { createAQuestion } from '../../store/questions';
+import './EditQuestion.css'
+import { updatedAQuestion } from '../../store/questions';
 
-function CreateQuestion({ setShowPostQueModal }) {
+function EditQuestion({ setShowPostQueModal, questId }) {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -17,13 +17,13 @@ function CreateQuestion({ setShowPostQueModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newQuestion = {
+    const editedQuestion = {
       userId: currUser.id,
       question,
       imageUrl
     }
 
-    const res = await dispatch(createAQuestion(newQuestion))
+    const res = await dispatch(updatedAQuestion(questId, editedQuestion))
 
     if (res?.errors) {
       setValidationErrors(res.errors)
@@ -36,7 +36,7 @@ function CreateQuestion({ setShowPostQueModal }) {
   }
 
   return (
-    <div className='createQueModalWrapper'>
+    <div className='EditQueModalWrapper'>
       <div className='creQueModalHeader'>
         Add Question
       </div>
@@ -64,7 +64,7 @@ function CreateQuestion({ setShowPostQueModal }) {
         ))}
       </div>
       <div>
-        <button id='createQueButton' onClick={handleSubmit}>Add Question</button>
+        <button id='EditQueButton' onClick={handleSubmit}>Add Question</button>
         <button id='cancelQueButton' onClick={() => setShowPostQueModal(false)}>Cancel</button>
       </div>
     </div>
@@ -72,4 +72,4 @@ function CreateQuestion({ setShowPostQueModal }) {
 
 }
 
-export default CreateQuestion
+export default EditQuestion

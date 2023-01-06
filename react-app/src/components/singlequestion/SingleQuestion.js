@@ -8,6 +8,7 @@ import './SingleQuestion.css'
 import pen from '../../images/pen.PNG'
 import { Modal } from '../../context/Modal';
 import CreateAnswerForm from '../createanswer/CreateAnswer';
+import EditQuestion from '../editquestion/EditQuestion';
 
 function SingleQuestion() {
   const { questId } = useParams();
@@ -17,6 +18,7 @@ function SingleQuestion() {
   const currUser = useSelector(state => state.session.user)
 
   const [showAnswerModal, setShowAnswerModal] = useState(false)
+  const [showEditQueModal, setShowEditQueModal] = useState(false)
 
   useEffect(() => {
     dispatch(getSingularQuestion(questId));
@@ -27,6 +29,10 @@ function SingleQuestion() {
   const showAnswer = e => {
     e.preventDefault()
     setShowAnswerModal(true)
+  }
+  const showEditQue = e => {
+    e.preventDefault()
+    setShowEditQueModal(true)
   }
 
   useEffect(() => {
@@ -42,8 +48,8 @@ function SingleQuestion() {
         <div className='singleQuestHeader'>
           <img src={userImg} id='singleQuestUserImg'></img>
           <div className='singleQuestHeadUser'>
-            <span id='singleQuestHeadName'>{theQuestion.user.firstName} {' '} {theQuestion.user.lastName}</span>
-            <span id='singleQuestHeadDesc'>{theQuestion.user.description}</span>
+            <span id='singleQuestHeadName'>{theQuestion.user?.firstName} {' '} {theQuestion.user?.lastName}</span>
+            <span id='singleQuestHeadDesc'>{theQuestion.user?.description}</span>
           </div>
         </div>
 
@@ -51,16 +57,30 @@ function SingleQuestion() {
           <div>{theQuestion.question}</div>
         </div>
 
-        <button className='singQueAddAnswer' onClick={showAnswer}>
-          <img src={pen} />
-          <span>Answer</span>
-        </button>
+        <div className='singQueButtonsWrapper'>
+          <button className='singQueAddAnswer' onClick={showAnswer}>
+            <img src={pen} />
+            <span>Answer</span>
+          </button>
+
+          <button className='singQueEditQues' onClick={showEditQue}>
+            <span>Edit</span>
+          </button>
+
+        </div>
+
 
         <img src={theQuestion.imageUrl} />
 
         {showAnswerModal &&
           <Modal onClose={() => setShowAnswerModal(false)}>
             <CreateAnswerForm setShowAnswerModal={setShowAnswerModal} questId={questId} />
+          </Modal>
+        }
+
+        {showEditQueModal &&
+          <Modal onClose={() => setShowEditQueModal(false)}>
+            <EditQuestion setShowEditQueModal={setShowEditQueModal} questId={questId} />
           </Modal>
         }
       </div>

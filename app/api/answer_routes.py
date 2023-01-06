@@ -11,8 +11,7 @@ answer_routes = Blueprint('answers', __name__)
 @answer_routes.route('/<int:questionId>/answers')
 @login_required
 def readAnswers(questionId):
-    question = Question.query.get(questionId)
-    answers = question[answers]
+    answers = Answer.query.filter(Answer.questionId == questionId).all()
     return { 'answers': [answer.to_dict() for answer in answers]}
 
 # Create Single Answer
@@ -27,7 +26,7 @@ def createSingleAnswer():
 
     if form.validate_on_submit():
         newAnswer = Answer(
-            user_id = user_id,
+            user_id = form.data['userId'],
             question_id = form.data['question_id'],
             answer = form.data['answer']
         )

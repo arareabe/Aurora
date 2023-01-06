@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom';
-import { createAnAnswer } from '../../store/answers';
-import './CreateAnswer.css'
+import { updateAnAnswer } from '../../store/answers';
+import './EditAnswer.css'
 
-const CreateAnswerForm = ({ setShowAnswerModal, questId }) => {
+const EditAnswerForm = ({ setShowEditAnsModal, questId }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -18,21 +18,21 @@ const CreateAnswerForm = ({ setShowAnswerModal, questId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await dispatch(createAnAnswer(questionId, answer))
+    const res = await dispatch(updateAnAnswer(questionId, answer))
 
     if (res?.errors) {
       setValidationErrors(res.errors)
       return
     } else {
       history.push(`/question/${questId}`);
-      setShowAnswerModal(false)
+      setShowEditAnsModal(false)
     }
   }
 
   return (
     <div>
       <div className='creQueModalHeader'>
-        Add Answer
+        Edit Answer
       </div>
       <div>
         <input
@@ -49,11 +49,11 @@ const CreateAnswerForm = ({ setShowAnswerModal, questId }) => {
         ))}
       </div>
       <div>
-        <button id='createQueButton' onClick={handleSubmit}>Add Answer</button>
-        <button id='cancelQueButton' onClick={() => setShowAnswerModal(false)}>Cancel</button>
+        <button id='editQueButton' onClick={handleSubmit}>Add Answer</button>
+        <button id='cancelQueButton' onClick={() => setShowEditAnsModal(false)}>Cancel</button>
       </div>
     </div>
   )
 }
 
-export default CreateAnswerForm;
+export default EditAnswerForm;

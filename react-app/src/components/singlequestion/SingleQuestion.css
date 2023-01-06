@@ -53,3 +53,8 @@
   font-size: 1.2rem;
   color: black;
 }
+
+.singQueButtonsWrapper {
+  display: flex;
+  justify-content: space-between;
+}
