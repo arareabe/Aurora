@@ -9,6 +9,7 @@ class Question(db.Model):
   question = db.Column(db.String(260), nullable=False)
   #Space Name?
   userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+  imageUrl = db.Column(db.String(1000))
   createdAt = db.Column(DateTime(timezone=True), server_default=now())
   updatedAt = db.Column(DateTime(timezone=True), onupdate=now())
 
@@ -21,6 +22,7 @@ class Question(db.Model):
       'question': self.question,
       'user': self.user.to_dict(),
       'userId': self.userId,
+      'imageUrl': self.imageUrl,
       'createdAt': self.createdAt,
       'answers': [answer.to_dict() for answer in self.answers]
     }

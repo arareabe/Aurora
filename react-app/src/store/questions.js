@@ -1,4 +1,4 @@
-import { csrfFetch } from '.csrf';
+// import { csrfFetch } from '.csrf';
 
 // TYPES
 const READ_QUESTIONS = 'questions/readQuestions'
@@ -102,7 +102,7 @@ export const getSingularQuestion = (questId) => async (dispatch) => {
 
   if (res.ok) {
     const singularQuestion = await res.json();
-    console.log(singularQuestion)
+    console.log('SINGULARITY ---------->', singularQuestion)
     dispatch(loadQuestion(singularQuestion))
     return singularQuestion;
   }
@@ -157,22 +157,41 @@ export const removeAQuestion = (questId) => async (dispatch) => {
 }
 
 // REDUCE ME
-const initialState = {}
+const initialState = {
+  allQuestions: {},
+  singleQuestion: {}
+}
 
 const questionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case READ_QUESTIONS:
-      const questionsState = { ...state };
+      const questionsState = { ...state, allQuestions: { ...state.allQuestions } };
       action.payload.questions.forEach(question => {
-        questionsState[question.id] = question
+        questionsState.allQuestions[question.id] = question
       })
       return questionsState
     case READ_QUESTION:
-      const aQuestionState = { ...state };
-      aQuestionState[question.id] = action.payload
+      const aQuestionState = { ...state, allQuestions: { ...state.allQuestions }, singleQuestion: { ...state.singleQuestion } };
+      aQuestionState.singleQuestion = action.payload
       return aQuestionState
     case CREATE_QUESTION:
-      const 
+      const createQueState = { ...state, allQuestions: { ...state.allQuestions }, singleQuestion: { ...state.singleQuestion } };
+      createQueState.allQuestions[action.payload.id] = action.payload;
+      createQueState.singleQuestion = action.payload;
+      return createQueState;
+    case UPDATE_QUESTION: {
+      const updatedQueState = { ...state, allQuestions: { ...state.allQuestions }, singleQuestion: { ...state.singleQuestion } }
+      updatedQueState.singleQuestion = action.payload;
+      return updatedQueState;
+    }
+    case REMOVE_QUESTION: {
+      const removalState = { ...state, allQuestions: { ...state.allQuestions }, singleQuestion: { ...state.singleQuestion } }
+      delete removalState.allQuestions[action.payload.id]
+      delete removalState.singleQuestion[action.payload.id]
+      return removalState
+    }
+    default:
+      return state;
   }
 }
 

@@ -13,6 +13,13 @@ def readQuestions():
   questions = Question.query.all()
   return {'questions': [question.to_dict() for question in questions]}
 
+# Read a Question
+@question_routes.route('/<int:questId>')
+def readSingleQuestion(questId):
+  question = Question.query.get(questId)
+
+  return { 'question': question.to_dict() }
+
 # Delete Single Question
 
 @question_routes.route('/', methods=['DELETE'])
@@ -40,7 +47,8 @@ def createSingleQuestion():
   if form.validate_on_submit():
     newQuestion = Question(
       owner_id = owner_id,
-      question = form['question']
+      question = form['question'],
+      imageUrl = form['imageUrl']
     )
 
     db.session.add(newQuestion)
@@ -48,7 +56,7 @@ def createSingleQuestion():
 
     return newQuestion.to_dict()
   else:
-    return { 'errors': validation_derrors_to_error_messages(form.errors) }
+    return { 'errors': validation_errors_to_error_messages(form.errors) }
 
 # Update Single Question
 

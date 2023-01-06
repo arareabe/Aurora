@@ -1,0 +1,55 @@
+.singleQuestionWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+  background-color: #E9E9E9;
+}
+
+.singleQuestionContainer {
+  border: 1px solid lightgrey;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+  width: 40rem;
+}
+
+.singleQuestHeader {
+  display: flex;
+  margin-bottom: 1rem;
+  gap: 1rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+#singleQuestUserImg {
+  height: 2.2rem;
+  width: 2.2rem;
+  border-radius: 21px;
+  object-fit: cover;
+}
+
+.singleQuestHeadUser {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+#singleQuestHeadName {
+  color: black;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+#singleQuestHeadDesc {
+  color: gray;
+  font-size: 0.8rem;
+}
+
+.singleQuestPostBody {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  font-weight: 650;
+  font-size: 1.2rem;
+  color: black;
+}

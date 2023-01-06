@@ -1,6 +1,6 @@
-
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
 import LogoutButton from './auth/LogoutButton';
 import aurora from '../images/aurora.png';
 import home from '../images/home.PNG';
@@ -9,14 +9,25 @@ import pen from '../images/pen.PNG';
 import spaces from '../images/spaces.PNG';
 import notifications from '../images/notifications.PNG';
 import search from '../images/search.png';
+import { Modal } from '../context/Modal'
 import './NavBar.css'
+import CreateQuestion from './createquestion/CreateQuestion';
 
 const NavBar = () => {
+  const dispatch = useDispatch;
+
+  const [showPostQueModal, setShowPostQueModal] = useState(false)
+
+  const showPost = e => {
+    e.preventDefault()
+    setShowPostQueModal(true)
+  }
+
   return (
     <div className='navBarWrapper'>
-      <div className='navBarAurora'>
+      <NavLink exact to='/' className='navBarAurora'>
         <img src={aurora} />
-      </div>
+      </NavLink>
       <div className='navBarIcons'>
         <div className='navBarIcon'>
           <img src={home} />
@@ -46,7 +57,7 @@ const NavBar = () => {
         </div>
       </div>
       <div>
-        <button className='navAddButton' type='submit'>
+        <button className='navAddButton' onClick={showPost}>
           Add question
         </button>
       </div>
@@ -76,8 +87,11 @@ const NavBar = () => {
             <LogoutButton />
           </li>
         </ul>
-
       </nav>
+      {showPostQueModal &&
+        <Modal onClose={() => setShowPostQueModal(false)}>
+          <CreateQuestion setShowPostQueModal={setShowPostQueModal} />
+        </Modal>}
     </div>
   );
 }

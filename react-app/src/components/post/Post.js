@@ -1,27 +1,25 @@
 import React from 'react';
 import './Post.css';
 import placeholder from '../../images/placeholder.png'
+import { NavLink } from 'react-router-dom';
+import userImg from '../../images/userImg.png';
 
-function Post() {
+function Post({ question }) {
+
+  console.log('THIS IS THE QUESTION --------------> ', question)
 
   return (
-    <div className='postWrapper'>
+    <div className='postContainer'>
       <div className='postHeader'>
-        <i class="fa-solid fa-user-tie"></i>
-        <div>
-          <span>Username</span>
-          <span>User Description · Timestamp</span>
+        <img src={userImg} id='postUserImg'></img>
+        <div className='postHeadUser'>
+          <span id='postHeadName'>{question.user.firstName} {' '} {question.user.lastName}</span>
+          <span id='postHeadDesc'>{question.user.description}</span>
         </div>
       </div>
 
       <div className='postBody'>
-        <div>Post Question</div>
-        <div>Post answer</div>
-        <img src={placeholder} />
-      </div>
-
-      <div className='postFooter'>
-        <button>Comments icon</button>
+        <div>{question.question}</div>
       </div>
     </div>
   )
