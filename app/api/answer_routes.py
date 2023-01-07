@@ -52,8 +52,8 @@ def update_answer():
 
     if form.validate_on_submit():
 
-        answer_id = form['answer_id']
-        edited_answer = form['answer']
+        answer_id = form.data['answer_id']
+        edited_answer = form.data['answer']
 
         answer = Answer.query.get(answer_id)
         answer.answer = edited_answer

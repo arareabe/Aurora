@@ -40,7 +40,8 @@ function SingleQuestion() {
 
     const removedQuestion = dispatch(removeAQuestion(questId))
 
-    if (removedQuestion) history.push(`/`)
+    if (removedQuestion) history.push('/')
+    window.location.reload(false)
   }
 
   useEffect(() => {

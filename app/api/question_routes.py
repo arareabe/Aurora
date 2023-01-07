@@ -25,7 +25,7 @@ def readSingleQuestion(questId):
 @question_routes.route('/', methods=['DELETE'])
 def deleteQuestion():
   data = request.json
-  print('FORM DATA ------------------->', data)
+
   quest_id = data['questId']
   actualQuestion = Question.query.get(quest_id)
 
@@ -68,10 +68,10 @@ def updateQuestion():
   form = QuestionForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-
+  print('FORM DATA ------------------->', form.data)
   if form.validate_on_submit():
-    quest_id = form['question_id']
-    updated_question = form['question']
+    quest_id = form.data['question_id']
+    updated_question = form.data['question']
 
     actualQuestion = Question.query.get(quest_id)
     actualQuestion.question = updated_question

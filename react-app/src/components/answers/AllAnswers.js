@@ -15,7 +15,7 @@ const AllAnswers = ({ questId }) => {
 
   useEffect(() => {
     dispatch(readAnswers(questId));
-  }, [dispatch, questId])
+  }, [dispatch])
 
   const [showEditAnsModal, setShowEditAnsModal] = useState(false)
 
@@ -26,28 +26,32 @@ const AllAnswers = ({ questId }) => {
     setShowEditAnsModal(true)
   }
 
-  const handleDelete = (answerId) => {
+  const handleDelete = async (e, answerId) => {
+    e.preventDefault();
+
     const removedAnswer = dispatch(removeAnAnswer(answerId))
 
+    if (removedAnswer) history.push(`/question/${questId}`)
+    // window.location.reload(false)
   }
 
   if (!allAnswers) return "NOT HERE"
 
   return (
     <div className='allAnswersInner'>
-      {allAnswers.map(answer => (
+      {allAnswers?.map(answer => (
         <div className='singAnsContainer'>
           <div className='singQuestHeader'>
             <img src={userImg} id='singleQuestUserImg' />
             <div className='singleQuestHeadUser'>
-              <span id='singleQuestHeadName'>{answer.user.firstName} {' '} {answer.user.lastName}</span>
-              <span id='singleQuestHeadDesc'>{answer.user.description}</span>
+              <span id='singleQuestHeadName'>{answer?.user.firstName} {' '} {answer?.user.lastName}</span>
+              <span id='singleQuestHeadDesc'>{answer?.user.description}</span>
             </div>
             <div className='answerButtonsWrapper'>
                 <button onClick={showEditAns}>
                   Edit
                 </button>
-                <button onClick={() => handleDelete(answer.id)}>
+                <button onClick={(e) => handleDelete(e, answer?.id)}>
                   Delete
                 </button>
             </div>
@@ -55,12 +59,12 @@ const AllAnswers = ({ questId }) => {
 
           {showEditAnsModal &&
             <Modal onClose={() => setShowEditAnsModal(false)}>
-              <EditAnswerForm setShowEditAnsModal={setShowEditAnsModal} answerId={answer.id} questId={questId} />
+              <EditAnswerForm setShowEditAnsModal={setShowEditAnsModal} answerId={answer?.id} questId={questId} />
             </Modal>
           }
 
           <div className='singleAnsBody'>
-            {answer.answer}
+            {answer?.answer}
           </div>
         </div>
       ))}
