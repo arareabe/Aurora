@@ -12,8 +12,19 @@ const CreateAnswerForm = ({ setShowAnswerModal, questId }) => {
 
   const [answer, setAnswer] = useState('')
   const [validationErrors, setValidationErrors] = useState([])
+  const [hasSubmitted, setHasSubmitted] = useState(false)
 
   const currUser = useSelector(state => state.session.user)
+
+  useEffect(() => {
+    const errors = [];
+
+    if (!answer.length) errors.push('Answer cannot be blank')
+    if (answer.length < 10) errors.push('Your answer must be at least 10 characters long')
+    if (answer.length > 3000) errors.push('Your answer cannot exceed 3000 characters')
+
+    setValidationErrors(errors)
+  }, [answer])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,14 +35,14 @@ const CreateAnswerForm = ({ setShowAnswerModal, questId }) => {
     //   answer: answer
     // }
 
-    const res = await dispatch(createAnAnswer( questId, currUser.id, answer))
+    setHasSubmitted(true)
 
-    console.log('RES -------------------', res)
 
-    if (res?.errors) {
-      setValidationErrors(res.errors)
-      return
-    } else {
+    if (!validationErrors.length) {
+      const res = await dispatch(createAnAnswer( questId, currUser.id, answer))
+
+      console.log('RES -------------------', res)
+
       history.push(`/question/${questId}`);
       setShowAnswerModal(false)
     }
@@ -52,7 +63,7 @@ const CreateAnswerForm = ({ setShowAnswerModal, questId }) => {
         />
       </div>
       <div className='validErrs'>
-        {validationErrors.map((error, idx) => (
+        {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
           <div key={idx}>{error}</div>
         ))}
       </div>

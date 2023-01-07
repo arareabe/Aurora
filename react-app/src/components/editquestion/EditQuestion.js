@@ -13,9 +13,22 @@ function EditQuestion({ setShowEditQueModal, questId }) {
   const [question, setQuestion] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [validationErrors, setValidationErrors] = useState([])
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
+  useEffect(() => {
+    const errors = [];
+
+    if (!question.length) errors.push('Question cannot be blank')
+    if (question.length < 10) errors.push('Your question must be at least 10 characters')
+    if (question.length > 340) errors.push('Your question cannot exceed 340 characters')
+
+    setValidationErrors(errors)
+  }, [question])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setHasSubmitted(true);
 
     const question_id = questId
 
@@ -26,14 +39,11 @@ function EditQuestion({ setShowEditQueModal, questId }) {
       question_id
     }
 
-    const res = await dispatch(updatedAQuestion(editedQuestion))
+    if (!validationErrors.length) {
+      const res = await dispatch(updatedAQuestion(editedQuestion))
 
-    console.log("UPDATED QUESTION ====================", res)
+      console.log("UPDATED QUESTION ====================", res)
 
-    if (res?.errors) {
-      setValidationErrors(res.errors)
-      return
-    } else {
       history.push(`/question/${questId}`)
       window.location.reload(false)
       setShowEditQueModal(false)
@@ -65,7 +75,7 @@ function EditQuestion({ setShowEditQueModal, questId }) {
         />
       </div>
       <div className='validErrs'>
-        {validationErrors.map((error, idx) => (
+        {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
           <div key={idx}>{error}</div>
         ))}
       </div>
