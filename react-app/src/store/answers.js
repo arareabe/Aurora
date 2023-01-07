@@ -105,6 +105,7 @@ export const removeAnAnswer = (answer_id, questId ) => async dispatch => {
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      questId,
       answer_id
     })
   })
@@ -144,7 +145,7 @@ const answersReducer = (state = initialState, action) => {
     case REMOVE_ANSWER: {
       console.log('ACTION ----------------------', action)
       const deletedAnsState = { ...state }
-      delete deletedAnsState[action.payload.answerId]
+      delete deletedAnsState[action.payload.questId]
       console.log('DELETED STATE -------------------------', deletedAnsState)
       return deletedAnsState
     }

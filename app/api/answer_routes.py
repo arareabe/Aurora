@@ -48,7 +48,7 @@ def update_answer():
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print("FORM DATA ----------------", form.data)
+
 
     if form.validate_on_submit():
 
@@ -70,6 +70,7 @@ def update_answer():
 @answer_routes.route('/', methods=['DELETE'])
 def delete_answer():
     data = request.json
+    print("FORM DATA ----------------", data)
     answer_id = data['answer_id']
     answer = Answer.query.get(answer_id)
 
