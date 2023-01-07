@@ -45,9 +45,9 @@ function App() {
         <ProtectedRoute path='/' exact={true} >
           <Home />
         </ProtectedRoute>
-        <Route path='/question/:questId' >
+        <ProtectedRoute path='/question/:questId' >
           <SingleQuestion />
-        </Route>
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

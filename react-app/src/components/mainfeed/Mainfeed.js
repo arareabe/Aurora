@@ -24,7 +24,7 @@ function Mainfeed() {
 
   return (
     <div className='mainfeedWrapper'>
-      <FeedQuestion />
+      {/* <FeedQuestion /> */}
       {Object.values(allQuestions).map(question => {
         return <NavLink to={`/question/${question.id}`} key={question.id} className={'postWrapper'}>
 

@@ -31,7 +31,7 @@ const AllAnswers = ({ questId }) => {
 
     const removedAnswer = dispatch(removeAnAnswer(answerId))
 
-    if (removedAnswer) history.push(`/question/${questId}`)
+    // if (removedAnswer) history.push(`/question/${questId}`)
     // window.location.reload(false)
   }
 

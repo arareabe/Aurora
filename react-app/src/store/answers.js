@@ -111,6 +111,7 @@ export const removeAnAnswer = (answer_id, questId ) => async dispatch => {
 
   if (res.ok) {
     const deletedAnswer = await res.json();
+    console.log("DELETED ANSWER =================", deletedAnswer)
     dispatch(removeAnswer(answer_id, questId))
     return deletedAnswer
   }
@@ -141,8 +142,10 @@ const answersReducer = (state = initialState, action) => {
       return updatedAnsState
     }
     case REMOVE_ANSWER: {
+      console.log('ACTION ----------------------', action)
       const deletedAnsState = { ...state }
       delete deletedAnsState[action.payload.answerId]
+      console.log('DELETED STATE -------------------------', deletedAnsState)
       return deletedAnsState
     }
     default:

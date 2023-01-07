@@ -35,6 +35,7 @@ function EditQuestion({ setShowEditQueModal, questId }) {
       return
     } else {
       history.push(`/question/${questId}`)
+      window.location.reload(false)
       setShowEditQueModal(false)
     }
 
