@@ -12,11 +12,13 @@ import search from '../images/search.png';
 import { Modal } from '../context/Modal'
 import './NavBar.css'
 import CreateQuestion from './createquestion/CreateQuestion';
+import ProfileButton from './ProfileButton';
 
-const NavBar = () => {
+const NavBar = ({ currUser }) => {
   const dispatch = useDispatch;
 
   const [showPostQueModal, setShowPostQueModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
   const showPost = e => {
     e.preventDefault()
@@ -28,7 +30,7 @@ const NavBar = () => {
       <NavLink exact to='/' className='navBarAurora'>
         <img src={aurora} />
       </NavLink>
-      <div className='navBarIcons'>
+      {/* <div className='navBarIcons'>
         <div className='navBarIcon'>
           <img src={home} />
         </div>
@@ -44,8 +46,8 @@ const NavBar = () => {
         <div className='navBarIcon'>
           <img src={notifications} />
         </div>
-      </div>
-      <div className='navBarSearchWrapper'>
+      </div> */}
+      {/* <div className='navBarSearchWrapper'>
         <div>
           <img id='navBarSearch' src={search} />
         </div>
@@ -55,13 +57,17 @@ const NavBar = () => {
         <div>
           <i class="fa-solid fa-user-tie"></i>
         </div>
-      </div>
+      </div> */}
       <div>
         <button className='navAddButton' onClick={showPost}>
           Add question
         </button>
       </div>
-      <nav>
+      <ProfileButton
+            user={currUser}
+            setShowModal={setShowModal}
+      />
+      {/* <nav>
         <ul>
           <li>
             <NavLink to='/' exact={true} activeClassName='active'>
@@ -87,7 +93,7 @@ const NavBar = () => {
             <LogoutButton />
           </li>
         </ul>
-      </nav>
+      </nav> */}
       {showPostQueModal &&
         <Modal onClose={() => setShowPostQueModal(false)}>
           <CreateQuestion setShowPostQueModal={setShowPostQueModal} />

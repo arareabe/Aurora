@@ -37,35 +37,35 @@ function CreateQuestion({ setShowPostQueModal }) {
 
   return (
     <div className='createQueModalWrapper'>
-      <div className='creQueModalHeader'>
-        Add Question
-      </div>
-      <div>
+      <div className='createQueModalContainer'>
+        <div className='creQueModalHeader'>
+          Add Question
+        </div>
         <input
-          type='text'
-          id='questionField'
-          placeholder='Start your question with "What", "How", "Why", etc.'
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
+            type='textarea'
+            id='questionField'
+            className='creQueModalBody'
+            placeholder='Start your question with "What", "How", "Why", etc.'
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
         />
-      </div>
-      <div>
         <input
           type='text'
           id='imgUrlField'
+          className='creQueModalImgUrl'
           placeholder='(Optional) Drop an image URL to go with your question!'
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
         />
-      </div>
-      <div className='validErrs'>
-        {validationErrors.map((error, idx) => (
-          <div key={idx}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <button id='createQueButton' onClick={handleSubmit}>Add Question</button>
-        <button id='cancelQueButton' onClick={() => setShowPostQueModal(false)}>Cancel</button>
+        <div className='validErrs'>
+          {validationErrors.map((error, idx) => (
+            <div key={idx}>{error}</div>
+          ))}
+        </div>
+        <div>
+          <button id='createQueButton' onClick={handleSubmit}>Add Question</button>
+          <button id='cancelQueButton' onClick={() => setShowPostQueModal(false)}>Cancel</button>
+        </div>
       </div>
     </div>
   )

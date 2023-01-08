@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
@@ -14,6 +14,7 @@ import SingleQuestion from './components/singlequestion/SingleQuestion'
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const currUser = useSelector(state => state.session.user)
 
   useEffect(() => {
     (async() => {
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      {currUser && <NavBar currUser={currUser} />}
       <Switch>
         <Route path='/login' exact={true}>
           <LoginForm />

@@ -5,6 +5,7 @@
   margin-top: 2rem;
   border-top: 1px solid grey;
   padding-top: 2rem;
+  margin-bottom: 4rem;
 }
 
 .singAnsContainer {
@@ -12,8 +13,29 @@
   box-shadow: 0 1px 1px rgba(0,0,0,0.04);
   width: 38rem;
   padding: 1rem;
+  background-color: white;
 }
 
 .singleAnsBody {
   margin-top: 0.5rem;
+}
+
+.singAnswerHeader {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.singleAnswerHeadUser {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin-left: 0.6rem;
+}
+
+.singAnsButton {
+  background-color: white;
+  border-radius: 18px;
+  font-size: 0.7rem;
+  padding: 0.3rem;
+  margin-right: 0.5rem;
 }

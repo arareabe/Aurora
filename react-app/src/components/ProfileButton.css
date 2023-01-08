@@ -1,0 +1,30 @@
+.userButton {
+  width: 56px;
+  height: 35px;
+  border-radius: 20px;
+  background-color: white;
+  border: 3px solid lightgrey;
+}
+
+.profile-dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgrey;
+  align-items: flex-start;
+  padding-left: 14px;
+  padding-top: 1rem;
+  padding-right: 14px;
+  height: 10rem;
+  gap: 1rem;
+  color: black;
+  top: 3rem;
+  right: 28rem;
+}
+
+.profileButtons {
+  background: darkred;
+  color: white;
+  border-radius: 25px;
+  padding: 0.8rem;
+}

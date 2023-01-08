@@ -72,18 +72,21 @@ function SingleQuestion() {
             <span>Answer</span>
           </button>
 
-          <button className='singQueEditQues' onClick={showEditQue}>
-            <span>Edit</span>
-          </button>
+          {currUser && currUser.id === theQuestion.user?.id && (
+            <div>
+              <button className='singQueEditQues' onClick={showEditQue}>
+                <span>Edit</span>
+              </button>
 
-          <button className='singQueDeleteQue' onClick={removeQuestion}>
-            <span>Delete</span>
-          </button>
-
+              <button className='singQueEditQues' onClick={removeQuestion}>
+                <span>Delete</span>
+              </button>
+            </div>
+          )}
         </div>
 
 
-        <img src={theQuestion.imageUrl} />
+        <img id='singQueImg' src={theQuestion.imageUrl} />
 
         {showAnswerModal &&
           <Modal onClose={() => setShowAnswerModal(false)}>

@@ -2,4 +2,26 @@
   width: 34rem;
   height: 34rem;
   border-radius: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.createQueModalContainer {
+  padding-top: 3rem;
+  width: 80%;
+}
+
+.creQueModalHeader {
+  font-weight: bold;
+  padding-bottom: 0.8rem;
+  width: 100%;
+  margin-left: 4rem
+}
+
+.creQueModalBody {
+  width: 100%;
+  margin-top: 0.5rem;
+  border-top: 1px solid blue;
+  padding-top: 0.5rem;
+
 }

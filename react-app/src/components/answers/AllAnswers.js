@@ -11,7 +11,7 @@ const AllAnswers = ({ questId }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const currUser = useSelector((state) => console.log("STATE -----------", state))
+  const currUser = useSelector((state) => state.session.user)
 
   useEffect(() => {
     dispatch(readAnswers(questId));
@@ -20,6 +20,11 @@ const AllAnswers = ({ questId }) => {
   const [showEditAnsModal, setShowEditAnsModal] = useState(false)
 
   const allAnswers = useSelector((state) => Object.values(state.answers))
+
+  useEffect(() => {
+    // console.log("ALLLLLLLLL eeeeeeeeeeeeeeeeeeee", allAnswers)
+    console.log("CURRRRRRRRRRRRRRRRRRRRRRRR", currUser)
+  })
 
   const showEditAns = e => {
     e.preventDefault();
@@ -41,22 +46,23 @@ const AllAnswers = ({ questId }) => {
     <div className='allAnswersInner'>
       {allAnswers?.map(answer => (
         <div className='singAnsContainer'>
-          <div className='singQuestHeader'>
+          <div className='singAnswerHeader'>
             <img src={userImg} id='singleQuestUserImg' />
-            <div className='singleQuestHeadUser'>
+            <div className='singleAnswerHeadUser'>
               <span id='singleQuestHeadName'>{answer?.user.firstName} {' '} {answer?.user.lastName}</span>
               <span id='singleQuestHeadDesc'>{answer?.user.description}</span>
             </div>
+          </div>
+          {currUser && currUser.id === answer?.user.id && (
             <div className='answerButtonsWrapper'>
-                <button onClick={showEditAns}>
+                <button className='singAnsButton' onClick={showEditAns}>
                   Edit
                 </button>
-                <button onClick={(e) => handleDelete(e, answer?.id)}>
+                <button className='singAnsButton' onClick={(e) => handleDelete(e, answer?.id)}>
                   Delete
                 </button>
             </div>
-          </div>
-
+          )}
           {showEditAnsModal &&
             <Modal onClose={() => setShowEditAnsModal(false)}>
               <EditAnswerForm setShowEditAnsModal={setShowEditAnsModal} answerId={answer?.id} questId={questId} />
