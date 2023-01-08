@@ -1,4 +1,4 @@
-from app.models import db, Question
+from app.models import db, Question, environment, SCHEMA
 
 def seed_questions():
   questions = [
