@@ -18,5 +18,9 @@ def seed_questions():
   db.session.commit()
 
 def undo_questions():
-    db.session.execute('TRUNCATE questions RESTART IDENTITY CASCADE;')
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.questions RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute("DELETE FROM questions")
+
     db.session.commit()
