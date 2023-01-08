@@ -76,8 +76,11 @@ export const createAQuestion = (newQuestion) => async (dispatch) => {
     body: JSON.stringify(newQuestion)
   })
 
+  console.log("THE REEEEEEEEEEEEEEEEEEEEEEEEEEEES", res)
+
   if (res.ok) {
     const createdQuestion = await res.json();
+    console.log('CREEEEAAAA', createdQuestion)
     dispatch(createQuestion(createdQuestion));
     return createdQuestion
   }

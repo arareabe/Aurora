@@ -13,9 +13,22 @@ function CreateQuestion({ setShowPostQueModal }) {
   const [question, setQuestion] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [validationErrors, setValidationErrors] = useState([])
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
+  useEffect(() => {
+    const errors = [];
+
+    if (!question.length) errors.push('Question cannot be blank')
+    if (question.length < 10) errors.push('Your question must be at least 10 characters')
+    if (question.length > 340) errors.push('Your question cannot exceed 340 characters')
+
+    setValidationErrors(errors)
+  }, [question])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setHasSubmitted(true)
 
     const newQuestion = {
       userId: currUser.id,
@@ -23,12 +36,9 @@ function CreateQuestion({ setShowPostQueModal }) {
       imageUrl
     }
 
-    const res = await dispatch(createAQuestion(newQuestion))
+    if (!validationErrors.length) {
+      const res = await dispatch(createAQuestion(newQuestion))
 
-    if (res?.errors) {
-      setValidationErrors(res.errors)
-      return
-    } else {
       history.push('/')
       setShowPostQueModal(false)
     }
@@ -49,6 +59,11 @@ function CreateQuestion({ setShowPostQueModal }) {
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
         />
+        <div className='validErrs'>
+          {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
+            <div key={idx}>{error}</div>
+          ))}
+        </div>
         <input
           type='text'
           id='imgUrlField'
@@ -57,11 +72,6 @@ function CreateQuestion({ setShowPostQueModal }) {
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
         />
-        <div className='validErrs'>
-          {validationErrors.map((error, idx) => (
-            <div key={idx}>{error}</div>
-          ))}
-        </div>
         <div>
           <button id='createQueButton' onClick={handleSubmit}>Add Question</button>
           <button id='cancelQueButton' onClick={() => setShowPostQueModal(false)}>Cancel</button>

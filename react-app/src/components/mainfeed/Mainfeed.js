@@ -18,6 +18,7 @@ function Mainfeed() {
 
   useEffect(() => {
     console.log('AWWWWWWWWWWWWWW ', allQuestions.length);
+    console.log('BWWWWWWWWWWWWWWWWWWWWWWWWWWWW,', allQuestions)
   })
 
   if (!allQuestions) return null;

@@ -25,9 +25,11 @@ const LoginForm = () => {
 
     const data = dispatch(login('demo@aa.io', 'password'))
 
-    if (data) {
-      setErrors(data);
-    }
+    // console.log("DATA -------------------", data)
+
+    // if (data) {
+    //   setErrors(data);
+    // }
   }
 
   const updateEmail = (e) => {
@@ -53,12 +55,12 @@ const LoginForm = () => {
         </div>
         <div className='loginBody'>
           <div id='loginSignWra'>
-            <div className='loginSignCon' id='loginSignWrap'>
-              <NavLink to='/sign-up' >
+            <div className='loginSignCon'>
+              <NavLink id='loginSignWrap' to='/sign-up' >
                 Sign Up
               </NavLink>
             </div>
-            <div className='loginSignCon' id='demoUser'>
+            <div className='loginSignCon' id='demoUser' onClick={demoLogin}>
               Demo User
             </div>
           </div>
@@ -67,7 +69,7 @@ const LoginForm = () => {
               Login
             </div>
             <div>
-              {errors.map((error, ind) => (
+              {errors?.map((error, ind) => (
                 <div key={ind}>{error}</div>
               ))}
             </div>

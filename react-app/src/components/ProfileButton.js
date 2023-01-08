@@ -37,7 +37,7 @@ function ProfileButton({ user, setShowModal }) {
       {showMenu &&
         (<ul className="profile-dropdown">
           <div>{user.username}</div>
-          <div>{user.email}</div>
+          <div>@ {user.email}</div>
           <div>
             <button className='profileButtons' onClick={logout}>Log Out</button>
           </div>

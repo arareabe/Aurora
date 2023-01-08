@@ -56,15 +56,20 @@
   width: 10rem;
   height: 1rem;
   padding: 0.6rem;
+  font-size: 1.2rem;
+
+  padding-bottom: 1.3rem;
 }
 
 #loginSignWrap {
-  padding-bottom: 0.7rem;
+  text-decoration: none;
+  color: black;
+  font-size: 1.2rem;
 }
 
 #demoUser {
   margin-top: 0;
-  padding-bottom: 0.7rem;
+  padding-bottom: 1.2rem;
 }
 
 .loginLogCon {
@@ -74,23 +79,28 @@
 #innerLoginHead {
   padding-bottom: 1rem;
   border-bottom: 1px solid grey;
+  font-size: 1.4rem;
 }
 
 .loginInputWrappers {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+
 }
 
 .loginInputLabels {
   font-size: bold;
   margin-bottom: 0.3rem;
+  font-size: 1.1rem;
 }
 
 .loginInputInps {
   height: 1.5rem;
   padding: 0.3rem;
   color: black;
+  border: 1px solid gray;
+  font-size: 1.2rem;
 }
 
 #loginButton {
@@ -103,6 +113,7 @@
   width: 4.5rem;
   border: 1px solid blue;
   margin-left:auto;
+  margin-top: 2rem;
 }
 
 input[type=text] {

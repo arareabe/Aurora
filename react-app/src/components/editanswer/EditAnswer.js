@@ -42,27 +42,30 @@ const EditAnswerForm = ({ setShowEditAnsModal, answerId, questId }) => {
   }
 
   return (
-    <div>
-      <div className='creQueModalHeader'>
-        Edit Answer
-      </div>
-      <div>
-        <input
-          type='text'
-          id='answerField'
-          placeholder='Leave your answer here!'
-          value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
-        />
-      </div>
-      <div className='validErrs'>
-        {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
-          <div key={idx}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <button id='editQueButton' onClick={handleSubmit}>Add Answer</button>
-        <button id='cancelQueButton' onClick={() => setShowEditAnsModal(false)}>Cancel</button>
+    <div className='createQueModalWrapper'>
+      <div className='createQueModalContainer'>
+        <div className='creQueModalHeader'>
+          Edit Answer
+        </div>
+        <div>
+          <input
+            type='text'
+            id='answerField'
+            className='creQueModalBody'
+            placeholder='Leave your answer here!'
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+          />
+        </div>
+        <div className='validErrs'>
+          {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
+            <div key={idx}>{error}</div>
+          ))}
+        </div>
+        <div className='answerModalButtons'>
+          <button id='createQueButton' onClick={handleSubmit}>Add Answer</button>
+          <button id='cancelQueButton' onClick={() => setShowEditAnsModal(false)}>Cancel</button>
+        </div>
       </div>
     </div>
   )

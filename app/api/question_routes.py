@@ -59,7 +59,6 @@ def createSingleQuestion():
     return newQuestion.to_dict()
   else:
     return { 'errors': validation_errors_to_error_messages(form.errors) }
-
 # Update Single Question
 
 @question_routes.route('/', methods=['PATCH'])

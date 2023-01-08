@@ -5,9 +5,6 @@ import { NavLink } from 'react-router-dom';
 import userImg from '../../images/userImg.png';
 
 function Post({ question }) {
-
-  console.log('THIS IS THE QUESTION --------------> ', question)
-
   if (!question) return 'No question here'
 
   return (

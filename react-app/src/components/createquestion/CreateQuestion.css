@@ -9,19 +9,55 @@
 .createQueModalContainer {
   padding-top: 3rem;
   width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
 }
 
 .creQueModalHeader {
   font-weight: bold;
   padding-bottom: 0.8rem;
-  width: 100%;
-  margin-left: 4rem
+  width: 50%;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1.4rem;
+  border-bottom: 3px solid lightblue;
 }
 
 .creQueModalBody {
   width: 100%;
   margin-top: 0.5rem;
-  border-top: 1px solid blue;
   padding-top: 0.5rem;
+  padding-top: 1rem;
+  border-style: none;
+  font-size: 1.1rem;
+  border-bottom: 1px solid lightgray;
+}
 
+.creQueModalImgUrl {
+  margin-top: 18rem;
+  border: 1px solid blue;
+  border-radius: 20px;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+#createQueButton {
+  background-color: lightblue;
+  border-radius: 18px;
+  font-size: 0.7rem;
+  padding: 0.6rem;
+  margin-right: 0.5rem;
+  font-size: 0.9rem;
+
+}
+
+#cancelQueButton {
+  border-style: none;
+  font-size: 0.7rem;
+}
+
+.answerModalButtons {
+  margin-top: auto;
 }

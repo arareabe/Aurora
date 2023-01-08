@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import './EditQuestion.css'
+import '../createquestion/CreateQuestion.css'
 import { updatedAQuestion } from '../../store/questions';
 
 function EditQuestion({ setShowEditQueModal, questId }) {
@@ -52,36 +52,40 @@ function EditQuestion({ setShowEditQueModal, questId }) {
   }
 
   return (
-    <div className='EditQueModalWrapper'>
-      <div className='creQueModalHeader'>
-        Edit Question
-      </div>
-      <div>
-        <input
-          type='text'
-          id='questionField'
-          placeholder='Start your question with "What", "How", "Why", etc.'
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-        />
-      </div>
-      <div>
-        <input
-          type='text'
-          id='imgUrlField'
-          placeholder='(Optional) Drop an image URL to go with your question!'
-          value={imageUrl}
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
-      </div>
-      <div className='validErrs'>
-        {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
-          <div key={idx}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <button id='EditQueButton' onClick={handleSubmit}>Edit Question</button>
-        <button id='cancelQueButton' onClick={() => setShowEditQueModal(false)}>Cancel</button>
+    <div className='createQueModalWrapper'>
+      <div className='createQueModalContainer'>
+        <div className='creQueModalHeader'>
+          Edit Question
+        </div>
+        <div>
+          <input
+            type='text'
+            id='questionField'
+            className='creQueModalBody'
+            placeholder='Start your question with "What", "How", "Why", etc.'
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+          />
+        </div>
+        <div className='validErrs'>
+          {hasSubmitted && validationErrors.length > 0 && validationErrors.map((error, idx) => (
+            <div key={idx}>{error}</div>
+          ))}
+        </div>
+        <div>
+          <input
+            type='text'
+            id='imgUrlField'
+            className='creQueModalImgUrl'
+            placeholder='(Optional) Drop an image URL to go with your question!'
+            value={imageUrl}
+            onChange={(e) => setImageUrl(e.target.value)}
+          />
+        </div>
+        <div>
+          <button id='createQueButton' onClick={handleSubmit}>Edit Question</button>
+          <button id='cancelQueButton' onClick={() => setShowEditQueModal(false)}>Cancel</button>
+        </div>
       </div>
     </div>
   )
