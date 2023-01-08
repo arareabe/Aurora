@@ -17,7 +17,7 @@ class Question(db.Model):
   updatedAt = db.Column(DateTime(timezone=True), onupdate=now())
 
   user = db.relationship('User', back_populates='questions')
-  answers = db.relationship('Answer', back_populates='question', cascade='all, delete-orphan')
+  answers = db.relationship('Answer', back_populates='question', cascade='all, delete-orphan', primaryjoin='(Question.id == Answer.questionId)')
 
   def to_dict(self):
     return {
