@@ -1,14 +1,17 @@
-from .db import db
+from .db import db, add_prefix_for_prod, environment, SCHEMA
 from sqlalchemy import DateTime
 from sqlalchemy.sql.functions import now
 
 class Answer(db.Model):
     __tablename__ = 'answers'
 
+    if environment == "production":
+        table_args = {'schema': SCHEMA}
+
     id = db.Column(db.Integer, primary_key=True)
     answer = db.Column(db.String(3000), nullable=False)
-    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    questionId= db.Column(db.Integer, db.ForeignKey('questions.id'), nullable=False)
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    questionId= db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('questions.id')), nullable=False)
     createdAt = db.Column(DateTime(timezone=True), server_default=now())
     updatedAt = db.Column(DateTime(timezone=True), onupdate=now())
 

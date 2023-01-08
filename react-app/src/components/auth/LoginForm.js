@@ -68,10 +68,16 @@ const LoginForm = () => {
             <div id='innerLoginHead'>
               Login
             </div>
-            <div>
-              {errors?.map((error, ind) => (
-                <div key={ind}>{error}</div>
-              ))}
+            <div className='loginFormErrorsWrap'>
+              {errors.map((error, ind) => {
+                const coloInd = error.indexOf(':') + 1
+
+                const updateAnswer = error.slice([coloInd])
+                return (
+                  <div key={ind}>{updateAnswer}</div>
+
+                )
+              })}
             </div>
             <div className='loginInputWrappers'>
               <label htmlFor='email' className='loginInputLabels'>Email</label>

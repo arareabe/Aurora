@@ -113,9 +113,17 @@
   width: 4.5rem;
   border: 1px solid blue;
   margin-left:auto;
-  margin-top: 2rem;
+  margin-top: 1.4rem;
 }
 
 input[type=text] {
   background-color: white;
+}
+
+.loginFormErrorsWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  color: lightcoral;
+  font-size: 1rem;
 }

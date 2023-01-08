@@ -22,7 +22,7 @@ function SingleQuestion() {
 
   useEffect(() => {
     dispatch(getSingularQuestion(questId));
-  }, [dispatch, questId])
+  }, [dispatch])
 
   const theQuestion = useSelector((state)=> state.questions.singleQuestion.question)
 
