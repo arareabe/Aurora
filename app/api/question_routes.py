@@ -71,13 +71,25 @@ def updateQuestion():
   if form.validate_on_submit():
     quest_id = form.data['question_id']
     updated_question = form.data['question']
+    if (form.data['imageUrl']):
 
-    actualQuestion = Question.query.get(quest_id)
-    actualQuestion.question = updated_question
+      updated_url = form.data['imageUrl']
 
-    db.session.commit()
+      actualQuestion = Question.query.get(quest_id)
+      actualQuestion.question = updated_question
+      actualQuestion.imageUrl = updated_url
 
-    return actualQuestion.to_dict()
+      db.session.commit()
+
+      return actualQuestion.to_dict()
+
+    else:
+      actualQuestion = Question.query.get(quest_id)
+      actualQuestion.question = updated_question
+
+      db.session.commit()
+
+      return actualQuestion.to_dict()
 
   else:
     return { 'errors': validation_errors_to_error_messages(form.errors) }
