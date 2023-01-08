@@ -35,12 +35,13 @@
 }
 
 .creQueModalImgUrl {
-  margin-top: 18rem;
+  margin-top: 14rem;
   border: 1px solid blue;
   border-radius: 20px;
   padding: 0.6rem;
   margin-bottom: 1rem;
   font-size: 0.9rem;
+  max-height: inherit;
 }
 
 #createQueButton {
@@ -51,6 +52,15 @@
   margin-right: 0.5rem;
   font-size: 0.9rem;
 
+}
+
+.validErrs{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  color: lightcoral;
+  font-style: italic;
 }
 
 #cancelQueButton {

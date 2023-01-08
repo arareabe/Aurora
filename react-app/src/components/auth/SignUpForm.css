@@ -1,9 +1,43 @@
 .signupTitle {
   font-size: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid lightblue;
+  border-bottom: 3px solid lightblue;
+  font-weight: bold;
+}
+
+.signupFormWrap {
+  margin-top: 1.5rem;
+  display: flex;
+}
+
+.signupFormInputsWrap {
+  flex-direction: column;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.signupFormInputs {
+  border-radius: 18px;
+  font-size: 1rem;
+  padding: 0.3rem;
 }
 
 #signUpFormButton {
-  
+  padding: 0.5rem;
+  border-radius: 18px;
+  background-color: lightblue;
+  color:white;
+  font-size: 1.2rem;
+  width: 55%;
+  align-self: center;
+  margin-top: 0.4rem;
+}
+
+.signupFormErrorsWrap {
+  margin-left: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  color: lightcoral;
+  font-size: 1rem;
 }
