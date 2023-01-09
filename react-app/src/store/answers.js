@@ -37,10 +37,10 @@ const createAnswer = (newAnswer) => {
   };
 };
 
-const updateAnswer = (questId, answerId, updatedAnswer) => {
+const updateAnswer = (questId, updatedAnswer) => {
   return {
     type: UPDATE_ANSWER,
-    payload: { questId, answerId, updatedAnswer }
+    payload: { questId, updatedAnswer }
   };
 };
 
@@ -97,7 +97,7 @@ export const updateAnAnswer = ( questionId, userId, answer_id, answer) => async 
   if (res.ok) {
     const updatedAnswer = await res.json();
     console.log("THIS IS THE UPDAAAAAAAAAAAAAAAAAAA", updatedAnswer)
-    dispatch(updateAnswer(questionId, updatedAnswer.id, updatedAnswer.answer));
+    dispatch(updateAnswer(questionId, updatedAnswer));
     return updatedAnswer
   }
 }
@@ -142,7 +142,7 @@ const answersReducer = (state = initialState, action) => {
     case UPDATE_ANSWER: {
       console.log("ACTIONEIFNEIFNIENFIEN,", action)
       const updatedAnsState = { ...state }
-      updatedAnsState[action.payload.answerId] = action.payload.updatedAnswer
+      updatedAnsState[action.payload.updatedAnswer.id] = action.payload.updatedAnswer
       return updatedAnsState
     }
     case REMOVE_ANSWER: {

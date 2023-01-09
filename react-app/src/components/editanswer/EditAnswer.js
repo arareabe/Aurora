@@ -41,7 +41,7 @@ const EditAnswerForm = ({ setShowEditAnsModal, answerId, questId }) => {
       history.push(`/question/${questId}`);
 
       setShowEditAnsModal(false)
-      window.location.reload(false)
+      // window.location.reload(false)
     }
   }
 
