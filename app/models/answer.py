@@ -7,7 +7,7 @@ class Answer(db.Model):
     __tablename__ = 'answers'
 
     if environment == "production":
-        table_args = ({'schema': SCHEMA})
+        table_args = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     answer = db.Column(db.String(3000), nullable=False)
