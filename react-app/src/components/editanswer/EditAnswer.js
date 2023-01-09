@@ -1,14 +1,18 @@
-import { useState, useEffect } from 'react'
+import React, { useState, memo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom';
 import { updateAnAnswer } from '../../store/answers';
-import './EditAnswer.css'
+import './EditAnswer.css';
 
 const EditAnswerForm = ({ setShowEditAnsModal, answerId, questId }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const questionId= questId
+
+  useEffect(() => {
+    console.log("IDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", answerId)
+  }, [answerId])
 
   const [answer, setAnswer] = useState('')
   const [validationErrors, setValidationErrors] = useState([])
@@ -71,4 +75,4 @@ const EditAnswerForm = ({ setShowEditAnsModal, answerId, questId }) => {
   )
 }
 
-export default EditAnswerForm;
+export default memo(EditAnswerForm);

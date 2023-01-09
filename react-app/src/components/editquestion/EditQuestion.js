@@ -44,8 +44,8 @@ function EditQuestion({ setShowEditQueModal, questId }) {
 
       console.log("UPDATED QUESTION ====================", res)
 
-      history.push(`/question/${questId}`)
-      window.location.reload(false)
+      history.push(`/`)
+      // window.location.reload(false)
       setShowEditQueModal(false)
     }
 

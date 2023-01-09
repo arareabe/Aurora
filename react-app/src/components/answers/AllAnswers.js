@@ -18,16 +18,19 @@ const AllAnswers = ({ questId }) => {
   }, [dispatch])
 
   const [showEditAnsModal, setShowEditAnsModal] = useState(false)
+  const [answerId, setAnswerId] = useState(0)
 
   const allAnswers = useSelector((state) => Object.values(state.answers))
 
   useEffect(() => {
-    // console.log("ALLLLLLLLL eeeeeeeeeeeeeeeeeeee", allAnswers)
+    console.log("ALLLLLLLLL eeeeeeeeeeeeeeeeeeee", allAnswers)
     console.log("CURRRRRRRRRRRRRRRRRRRRRRRR", currUser)
   })
 
-  const showEditAns = e => {
+  const showEditAns = (e, answerId) => {
     e.preventDefault();
+    setAnswerId(answerId)
+    console.log("THIS IS THE ANSWER IDDDDDDDDDDDD", answerId)
     setShowEditAnsModal(true)
   }
 
@@ -49,23 +52,23 @@ const AllAnswers = ({ questId }) => {
           <div className='singAnswerHeader'>
             <img src={userImg} id='singleQuestUserImg' />
             <div className='singleAnswerHeadUser'>
-              <span id='singleQuestHeadName'>{answer?.user.firstName} {' '} {answer?.user.lastName}</span>
-              <span id='singleQuestHeadDesc'>{answer?.user.description}</span>
+              <span id='singleQuestHeadName'>{answer?.user?.firstName} {' '} {answer?.user?.lastName}</span>
+              <span id='singleQuestHeadDesc'>{answer?.user?.description}</span>
             </div>
-          </div>
-          {currUser && currUser.id === answer?.user.id && (
-            <div className='answerButtonsWrapper'>
-                <button className='singAnsButton' onClick={showEditAns}>
+            </div>
+            {currUser && currUser.id === answer?.user?.id && (
+              <div className='answerButtonsWrapper'>
+                <button className='singAnsButton' onClick={(e) => showEditAns(e, answer?.id)}>
                   Edit
                 </button>
                 <button className='singAnsButton' onClick={(e) => handleDelete(e, answer?.id)}>
                   Delete
                 </button>
-            </div>
-          )}
+             </div>
+            )}
           {showEditAnsModal &&
             <Modal onClose={() => setShowEditAnsModal(false)}>
-              <EditAnswerForm setShowEditAnsModal={setShowEditAnsModal} answerId={answer?.id} questId={questId} />
+              <EditAnswerForm setShowEditAnsModal={setShowEditAnsModal} answerId={answerId} questId={questId} />
             </Modal>
           }
 

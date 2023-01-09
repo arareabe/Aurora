@@ -85,6 +85,7 @@ export const createAnAnswer = ( questionId, userId, answer ) => async (dispatch)
 }
 
 export const updateAnAnswer = ( questionId, userId, answer_id, answer) => async (dispatch) => {
+  console.log("ANSWIDDDDDDDDDDDDD", answer_id)
   const res = await fetch('/api/answers/', {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
@@ -95,7 +96,8 @@ export const updateAnAnswer = ( questionId, userId, answer_id, answer) => async 
 
   if (res.ok) {
     const updatedAnswer = await res.json();
-    dispatch(updateAnswer(questionId, updatedAnswer.answer.id, updatedAnswer.answer.answer));
+    console.log("THIS IS THE UPDAAAAAAAAAAAAAAAAAAA", updatedAnswer)
+    dispatch(updateAnswer(questionId, updatedAnswer.id, updatedAnswer.answer));
     return updatedAnswer
   }
 }
@@ -138,6 +140,7 @@ const answersReducer = (state = initialState, action) => {
       return createAnsState
     }
     case UPDATE_ANSWER: {
+      console.log("ACTIONEIFNEIFNIENFIEN,", action)
       const updatedAnsState = { ...state }
       updatedAnsState[action.payload.answerId] = action.payload.updatedAnswer
       return updatedAnsState

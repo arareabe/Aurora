@@ -51,11 +51,13 @@ def update_answer():
 
 
     if form.validate_on_submit():
+        print("FORM DATA ----------------", form.data)
 
         answer_id = form.data['answer_id']
         edited_answer = form.data['answer']
 
         answer = Answer.query.get(answer_id)
+        print("ANSWEEEEEEEEEEEEEEEEEEEEEEEEEEEEE", answer)
         answer.answer = edited_answer
 
         db.session.commit()
@@ -70,7 +72,7 @@ def update_answer():
 @answer_routes.route('/', methods=['DELETE'])
 def delete_answer():
     data = request.json
-    print("FORM DATA ----------------", data)
+
     answer_id = data['answer_id']
     answer = Answer.query.get(answer_id)
 
