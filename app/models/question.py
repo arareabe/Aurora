@@ -6,7 +6,7 @@ class Question(db.Model):
   __tablename__ = 'questions'
 
   if environment == "production":
-    table_args = {'schema': SCHEMA}
+    __table_args__ = {'schema': SCHEMA}
 
   id = db.Column(db.Integer, primary_key=True)
   question = db.Column(db.String(260), nullable=False)
