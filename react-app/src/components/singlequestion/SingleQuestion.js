@@ -41,7 +41,7 @@ function SingleQuestion() {
     const removedQuestion = dispatch(removeAQuestion(questId))
 
     if (removedQuestion) history.push('/')
-    window.location.reload(false)
+    // window.location.reload(false)
   }
 
   useEffect(() => {

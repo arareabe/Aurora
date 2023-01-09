@@ -115,7 +115,8 @@ export const removeAQuestion = (questId) => async (dispatch) => {
 
   if (res.ok) {
     const deletedQuestion = await res.json();
-    dispatch(removeQuestion(deletedQuestion));
+    console.log("DELETEIONNNNNNNNNNNNNNNNNNNNNNNNN,", deletedQuestion)
+    dispatch(removeQuestion(questId));
   }
 }
 
@@ -149,9 +150,10 @@ const questionsReducer = (state = initialState, action) => {
       return updatedQueState;
     }
     case REMOVE_QUESTION: {
+      console.log('ACTIONNONONONONONONONO', action)
       const removalState = { ...state, allQuestions: { ...state.allQuestions }, singleQuestion: { ...state.singleQuestion } }
-      delete removalState.allQuestions[action.payload.id]
-      delete removalState.singleQuestion[action.payload.id]
+      delete removalState.allQuestions[action.payload]
+      delete removalState.singleQuestion[action.payload]
       return removalState
     }
     default:

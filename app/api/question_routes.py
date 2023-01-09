@@ -26,6 +26,8 @@ def readSingleQuestion(questId):
 def deleteQuestion():
   data = request.json
 
+  print('FORM DATA ------------------->', data)
+
   quest_id = data['questId']
   actualQuestion = Question.query.get(quest_id)
 
@@ -67,7 +69,6 @@ def updateQuestion():
   form = QuestionForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
-  print('FORM DATA ------------------->', form.data)
   if form.validate_on_submit():
     quest_id = form.data['question_id']
     updated_question = form.data['question']
