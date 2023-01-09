@@ -3,7 +3,7 @@ from sqlalchemy import DateTime
 from sqlalchemy.sql.functions import now
 
 class Question(db.Model):
-  __tablename__ = 'questionz'
+  __tablename__ = 'questions'
 
   if environment == "production":
     table_args = {'schema': SCHEMA}
