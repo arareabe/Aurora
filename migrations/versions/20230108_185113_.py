@@ -1,19 +1,19 @@
 """empty message
 
-Revision ID: ec7c69a3d8e9
+Revision ID: 369f6f916185
 Revises:
-Create Date: 2023-01-08 15:31:24.991522
+Create Date: 2023-01-08 18:51:13.056662
 
 """
 from alembic import op
 import sqlalchemy as sa
+
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
-
 # revision identifiers, used by Alembic.
-revision = 'ec7c69a3d8e9'
+revision = '369f6f916185'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -54,11 +54,12 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    # ### end Alembic commands ###
+
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE questions SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE answers SET SCHEMA {SCHEMA};")
+    # ### end Alembic commands ###
 
 
 def downgrade():
