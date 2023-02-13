@@ -30,7 +30,7 @@ export const getAllSpaces = () => async dispatch => {
 }
 
 export const getAllSpaque = (spaceId) => async dispatch => {
-  const res = await fetch(`/api/spaces/${spaceId}`);
+  const res = await fetch(`/api/spaces/${spaceId}/questions`);
 
   if (res.ok) {
     const allSpaque = await res.json();
@@ -53,6 +53,12 @@ const spacesReducer = (state = initialState, action) => {
         spacesState.allSpaces[space.id] = space
       })
       return spacesState
+    case READ_SPAQUE:
+      const spaqueState = { allSpaces: {}, allSpaque: {} };
+      action.payload.spaceQuestions.forEach(spaque => {
+        spaqueState.allSpaque[spaque.id] = spaque
+      })
+      return spaqueState;
     default:
       return state;
   }

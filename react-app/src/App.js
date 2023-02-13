@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import Home from './components/home/Home'
 import SingleQuestion from './components/singlequestion/SingleQuestion'
+import Spaque from './components/spaque/Spaque';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,6 +49,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/question/:questId' >
           <SingleQuestion />
+        </ProtectedRoute>
+        <ProtectedRoute path='/:space/:spaceId' >
+          <Spaque />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

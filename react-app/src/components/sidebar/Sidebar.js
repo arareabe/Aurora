@@ -20,7 +20,7 @@ function Sidebar() {
   return (
     <div className='sidebarWrapper'>
       {Object.values(allSpaces).map(space => {
-        return <NavLink to={`/${space.space}`} key={space.id} className={'spaceWrapper'}>
+        return <NavLink to={`/${space.space}/${space.id}`} key={space.id} className={'spaceWrapper'}>
           <SidebarSpaces space={space} />
 
         </NavLink>

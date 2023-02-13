@@ -1,6 +1,15 @@
 .sidebarWrapper {
-  background-color: blue;
+  background-color: #E9E9E9;
   width: 10rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.spaceWrapper {
+  text-decoration: none;
+  color: rgb(88, 88, 88);
+  font-size: 0.8rem;
 }
 
 #sideCreateSpace {

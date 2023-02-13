@@ -9,3 +9,23 @@
   padding-bottom: 5rem;
   margin-right: 12rem;
 }
+
+#spaqueInnerWrapper {
+  /* margin-left: 2rem; */
+  background-color: #E9E9E9;
+  width: 40rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-bottom: 5rem;
+  justify-self: center;
+}
+
+#spaqueOuterWrapper {
+  background-color: #E9E9E9;
+  width: 100vw;
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
