@@ -2,25 +2,16 @@ import React from 'react'
 import history from '../../images/history.png'
 import './SidebarSpaces.css'
 
-function SidebarSpaces() {
+function SidebarSpaces({ space }) {
+  if (!space) return 'No space here'
+
+  console.log("SPACE CONTINUUUUUUUUUUUUUM", space)
 
   return (
     <div className='sidebarSpaces'>
       <div className='sidebarSpace'>
-        <img src={history} />
-        <p>History</p>
-      </div>
-      <div className='sidebarSpace'>
-        <img src={history} />
-        <p>History</p>
-      </div>
-      <div className='sidebarSpace'>
-        <img src={history} />
-        <p>History</p>
-      </div>
-      <div className='sidebarSpace'>
-        <img src={history} />
-        <p>History</p>
+        <img src={space.imageUrl} />
+        <p>{space.space}</p>
       </div>
     </div>
   )

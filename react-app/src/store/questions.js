@@ -150,7 +150,6 @@ const questionsReducer = (state = initialState, action) => {
       return updatedQueState;
     }
     case REMOVE_QUESTION: {
-      console.log('ACTIONNONONONONONONONO', action)
       const removalState = { ...state, allQuestions: { ...state.allQuestions }, singleQuestion: { ...state.singleQuestion } }
       delete removalState.allQuestions[action.payload]
       delete removalState.singleQuestion[action.payload]

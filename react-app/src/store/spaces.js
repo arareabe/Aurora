@@ -23,6 +23,7 @@ export const getAllSpaces = () => async dispatch => {
 
   if (res.ok) {
     const allSpaces = await res.json();
+    console.log("THIS IS THE SPACE ", allSpaces)
     dispatch(loadSpaces(allSpaces));
     return allSpaces;
   }
@@ -48,8 +49,13 @@ const spacesReducer = (state = initialState, action) => {
   switch (action.type) {
     case READ_SPACES:
       const spacesState = { ...state, allSpaces: { ...state.allSpaces} };
+      action.payload.spaces.forEach(space => {
+        spacesState.allSpaces[space.id] = space
+      })
       return spacesState
     default:
       return state;
   }
 }
+
+export default spacesReducer;

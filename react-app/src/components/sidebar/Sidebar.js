@@ -4,14 +4,27 @@ import { NavLink } from 'react-router-dom';
 import SidebarSpaces from './SidebarSpaces';
 import './Sidebar.css'
 
+import { getAllSpaces } from '../../store/spaces';
+
 function Sidebar() {
+  const dispatch = useDispatch();
+
+  const allSpaces = useSelector((state) => Object.values(state.spaces.allSpaces))
+
+  useEffect(() => {
+    dispatch(getAllSpaces())
+  }, [dispatch])
+
+  if (!allSpaces) return null;
 
   return (
     <div className='sidebarWrapper'>
-      <div id='sideCreateSpace'>
-        + Create Space
-      </div>
-      <SidebarSpaces />
+      {Object.values(allSpaces).map(space => {
+        return <NavLink to={`/${space.space}`} key={space.id} className={'spaceWrapper'}>
+          <SidebarSpaces space={space} />
+
+        </NavLink>
+      })}
     </div>
   )
 }
