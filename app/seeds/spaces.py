@@ -14,10 +14,10 @@ def seed_spaces():
 
   db.session.commit()
 
-  def undo_spaces():
-    if environment == "production":
-      db.session.execute(f"TRUNCATE table {SCHEMA}.spaces RESTART IDENTITY CASCADE;")
-    else:
-      db.session.execute("DELETE FROM spaces")
+def undo_spaces():
+  if environment == "production":
+    db.session.execute(f"TRUNCATE table {SCHEMA}.spaces RESTART IDENTITY CASCADE;")
+  else:
+    db.session.execute("DELETE FROM spaces")
 
-    db.session.commit()
+  db.session.commit()

@@ -7,7 +7,7 @@ import './Home.css';
 function Home() {
   return (
     <div id='homeWrapper'>
-      {/* <Sidebar /> */}
+      <Sidebar />
       <Mainfeed />
     </div>
   )
