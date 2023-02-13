@@ -47,7 +47,7 @@ const NavBar = ({ currUser }) => {
           <img src={notifications} />
         </div>
       </div> */}
-      {/* <div className='navBarSearchWrapper'>
+      <div className='navBarSearchWrapper'>
         <div>
           <img id='navBarSearch' src={search} />
         </div>
@@ -57,7 +57,7 @@ const NavBar = ({ currUser }) => {
         <div>
           <i class="fa-solid fa-user-tie"></i>
         </div>
-      </div> */}
+      </div>
       <div>
         <button className='navAddButton' onClick={showPost}>
           Add question

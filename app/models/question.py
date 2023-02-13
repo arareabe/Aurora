@@ -10,13 +10,14 @@ class Question(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   question = db.Column(db.String(260), nullable=False)
-  #Space Name?
   userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+  spaceId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('spaces.id')), nullable=False)
   imageUrl = db.Column(db.String(1000))
   createdAt = db.Column(DateTime(timezone=True), server_default=now())
   updatedAt = db.Column(DateTime(timezone=True), onupdate=now())
 
   user = db.relationship('User', back_populates='questions')
+  space = db.relationship('Space', back_populates='questions')
   answers = db.relationship('Answer', back_populates='question', cascade='all, delete-orphan', primaryjoin='Question.id == Answer.questionId')
 
   def to_dict(self):
@@ -25,6 +26,7 @@ class Question(db.Model):
       'question': self.question,
       'user': self.user.to_dict(),
       'userId': self.userId,
+      'spaceId': self.spaceId,
       'imageUrl': self.imageUrl,
       'createdAt': self.createdAt,
       'answers': [answer.to_dict() for answer in self.answers]
