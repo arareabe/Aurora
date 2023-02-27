@@ -11,6 +11,7 @@ import { authenticate } from './store/session';
 import Home from './components/home/Home'
 import SingleQuestion from './components/singlequestion/SingleQuestion'
 import Spaque from './components/spaque/Spaque';
+import Seaque from './components/seaque/Seaque';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,6 +39,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path='/search/:searchWord'>
+          <Seaque />
+        </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>

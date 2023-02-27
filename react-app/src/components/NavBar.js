@@ -8,7 +8,7 @@ import following from '../images/following.PNG';
 import pen from '../images/pen.PNG';
 import spaces from '../images/spaces.PNG';
 import notifications from '../images/notifications.PNG';
-import search from '../images/search.png';
+import searchImg from '../images/search.png';
 import { Modal } from '../context/Modal'
 import './NavBar.css'
 import CreateQuestion from './createquestion/CreateQuestion';
@@ -19,10 +19,15 @@ const NavBar = ({ currUser }) => {
 
   const [showPostQueModal, setShowPostQueModal] = useState(false)
   const [showModal, setShowModal] = useState(false);
+  const [search, setSearch] = useState('')
 
   const showPost = e => {
     e.preventDefault()
     setShowPostQueModal(true)
+  }
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
   }
 
   return (
@@ -48,16 +53,23 @@ const NavBar = ({ currUser }) => {
         </div>
       </div> */}
       <div className='navBarSearchWrapper'>
-        <div>
-          <img id='navBarSearch' src={search} />
-        </div>
-        <input type='text' placeholder='Search Aurora' />
+        <NavLink to={`/search/${search}`} >
+          <img id='navBarSearch' src={searchImg} />
+        </NavLink>
+        <input
+            id='search-bar'
+            type='text'
+            placeholder='Search Aurora'
+            value={search}
+            onKeyUp={handleSearch}
+            onChange={(e) => setSearch(e.target.value)}
+        />
       </div>
-      <div className='navModal'>
+      {/* <div className='navModal'>
         <div>
           <i class="fa-solid fa-user-tie"></i>
         </div>
-      </div>
+      </div> */}
       <div>
         <button className='navAddButton' onClick={showPost}>
           Add question

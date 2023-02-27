@@ -4,12 +4,14 @@ import session from './session'
 import questionsReducer from './questions';
 import answersReducer from './answers';
 import spacesReducer from './spaces';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
   session,
   questions: questionsReducer,
   answers: answersReducer,
-  spaces: spacesReducer
+  spaces: spacesReducer,
+  search: searchReducer
 });
 
 

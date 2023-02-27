@@ -15,12 +15,25 @@
 }
 
 .navBarSearchWrapper {
- display: flex;
-
+  display: flex;
+  align-items: center;
+  border: 1px solid lightgray;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 5px;
+  width: 13rem;
 }
 
 #navBarSearch {
-  height: 2rem;
+  padding-top: 0.2rem;
+}
+
+input:focus{
+  outline: none;
+}
+
+#search-bar {
+  border: none;
 }
 
 .navAddButton {
