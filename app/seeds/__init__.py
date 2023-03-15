@@ -35,6 +35,6 @@ def seed():
 def undo():
     undo_answers()
     undo_questions()
-    undo_spaces()
     undo_users()
+    undo_spaces()
     # Add other undo functions here
