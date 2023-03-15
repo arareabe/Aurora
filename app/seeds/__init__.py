@@ -21,10 +21,10 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_answers()
         undo_questions()
-        undo_spaces()
         undo_users()
-    seed_users()
+        undo_spaces()
     seed_spaces()
+    seed_users()
     seed_questions()
     seed_answers()
     # Add other seed functions here
