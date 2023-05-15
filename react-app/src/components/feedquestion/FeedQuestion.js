@@ -10,7 +10,7 @@ function FeedQuestion() {
           <input type='text' placeholder='What do you want to ask or share?' />
         </div>
         <div>
-          <button type='submit'>Ask</button>
+          <button type='submit'>Ask Away</button>
         </div>
     </div>
   )
