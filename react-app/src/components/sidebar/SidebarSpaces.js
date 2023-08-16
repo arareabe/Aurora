@@ -1,5 +1,4 @@
 import React from 'react'
-import history from '../../images/history.png'
 import './SidebarSpaces.css'
 
 function SidebarSpaces({ space }) {
@@ -9,10 +8,8 @@ function SidebarSpaces({ space }) {
 
   return (
     <div className='sidebarSpaces'>
-      <div className='sidebarSpace'>
-        <img src={space.imageUrl} />
-        <p>{space.space}</p>
-      </div>
+      <img className='sideSpaceImg' src={space.imageUrl} />
+      <p className='sideSpaceName'>{space.space}</p>
     </div>
   )
 }

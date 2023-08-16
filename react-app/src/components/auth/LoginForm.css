@@ -72,6 +72,10 @@
   padding-bottom: 1.2rem;
 }
 
+#demoUser:hover {
+  cursor: pointer;
+}
+
 .loginLogCon {
   width: 13rem;
 }
