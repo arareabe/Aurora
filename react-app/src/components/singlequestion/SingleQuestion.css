@@ -4,7 +4,7 @@
   align-items: center;
   padding-top: 2rem;
   background-color: #E9E9E9;
-  height: 100%;
+  overflow: auto;
 }
 
 .singleQuestionContainer {
