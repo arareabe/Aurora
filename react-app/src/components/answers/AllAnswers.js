@@ -50,7 +50,7 @@ const AllAnswers = ({ questId }) => {
       {allAnswers?.map(answer => (
         <div className='singAnsContainer'>
           <div className='singAnswerHeader'>
-            <img src={userImg} id='singleQuestUserImg' />
+            <img src={answer.user.avatar} id='singleQuestUserImg' />
             <div className='singleAnswerHeadUser'>
               <span id='singleQuestHeadName'>{answer?.user?.firstName} {' '} {answer?.user?.lastName}</span>
               <span id='singleQuestHeadDesc'>{answer?.user?.description}</span>

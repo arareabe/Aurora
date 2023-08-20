@@ -55,7 +55,7 @@ function SingleQuestion() {
     <div className='singleQuestionWrapper'>
       <div className='singleQuestionContainer'>
         <div className='singleQuestHeader'>
-          <img src={userImg} id='singleQuestUserImg'></img>
+          <img src={theQuestion.user.avatar} id='singleQuestUserImg'></img>
           <div className='singleQuestHeadUser'>
             <span id='singleQuestHeadName'>{theQuestion.user?.firstName} {' '} {theQuestion.user?.lastName}</span>
             <span id='singleQuestHeadDesc'>{theQuestion.user?.description}</span>

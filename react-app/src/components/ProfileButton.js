@@ -32,7 +32,7 @@ function ProfileButton({ user, setShowModal }) {
   return (
     <>
       <button className='userButton' onClick={openMenu}>
-        <i className="fa-solid fa-user" />
+        <img src={user.avatar} id='profileButtonImg' />
       </button>
       {showMenu &&
         (<ul className="profile-dropdown">

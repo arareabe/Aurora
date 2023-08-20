@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     description = db.Column(db.String(160), nullable=False)
+    avatar = db.Column(db.String(255))
 
     questions = db.relationship('Question', back_populates='user', cascade='all, delete-orphan')
     answers = db.relationship('Answer', back_populates='user', cascade='all, delete-orphan')
@@ -38,5 +39,6 @@ class User(db.Model, UserMixin):
             'lastName': self.lastName,
             'username': self.username,
             'email': self.email,
-            'description': self.description
+            'description': self.description,
+            'avatar': self.avatar
         }
